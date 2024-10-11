@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obras Disponibles</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-$END$
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <h1>Obras Disponibles</h1>
+    <ul>
+        <li th:each="obra : ${obras}">
+            <h3 th:text="${obra.getTitle()}"></h3>
+            <p th:text="${obra.getDescription()}"></p>
+            <p>Sala: <span th:text="${obra.getRoom().getName()}"></span></p>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

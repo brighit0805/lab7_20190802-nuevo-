@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-$END$
+<nav th:fragment="navbar">
+    <ul>
+        <li><a th:href="@{/cliente/obras}" sec:authorize="hasRole('CLIENTE')">Obras</a></li>
+        <li><a th:href="@{/gerente/rooms}" sec:authorize="hasRole('GERENTE')">Salas</a></li>
+        <li><a th:href="@{/admin/funciones}" sec:authorize="hasRole('ADMIN')">Funciones</a></li>
+        <li><a th:href="@{/logout}">Cerrar Sesión</a></li>
+    </ul>
+</nav>
 </body>
 </html>

@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Reservas</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-$END$
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <h1>Mis Reservas</h1>
+    <ul>
+        <li th:each="reserva : ${reservas}">
+            <h3 th:text="${reserva.getFuncion().getObra().getTitulo()}"></h3>
+            <p>Función: <span th:text="${#dates.format(reserva.getFuncion().getFechaHora(), 'dd/MM/yyyy HH:mm')}"></span></p>
+            <p>Sala: <span th:text="${reserva.getFuncion().getObra().getRoom().getName()}"></span></p>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

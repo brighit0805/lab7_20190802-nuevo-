@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Funciones</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-$END$
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <h1>Funciones</h1>
+    <form th:action="@{/admin/funciones}" method="post">
+        <select name="obra" th:each="obra : ${obras}" th:value="${obra.getId()}" th:text="${obra.getTitle()}"></select>
+        <input type="datetime-local" name="fechaHora" required/>
+        <button type="submit">Agregar Función</button>
+    </form>
+
+    <ul>
+        <li th:each="funcion : ${funciones}">
+            <h3 th:text="${funcion.getObra().getTitle()}"></h3>
+            <p>Fecha: <span th:text="${#dates.format(funcion.getFuncionDate(), 'dd/MM/yyyy HH:mm')}"></span></p>
+            <p>Sala: <span th:text="${funcion.getRoom().getName()}"></span></p>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
